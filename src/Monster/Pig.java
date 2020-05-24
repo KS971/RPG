@@ -16,6 +16,6 @@ public class Pig extends Monster {
 
     @Override
     public int getMonOFF() {
-        return MONSTER_OFF;
+        return this.MONSTER_OFF;
     }
 }

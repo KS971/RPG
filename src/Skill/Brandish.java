@@ -7,21 +7,21 @@ public class Brandish extends Skill {
 
     @Override
     public void getSkillInfo() {
-        System.out.println("눈 앞의 적을 두번 연속 공격한다.\n");
+        System.out.printf("%s : 눈 앞의 적을 두번 연속 공격한다.\n\n", this.SKILL_NAME);
     }
 
     @Override
     public String getSkillName() {
-        return SKILL_NAME;
+        return this.SKILL_NAME;
     }
 
     @Override
     public int getSkillEffect() {
-        return SKILL_OFF_EFFECT;
+        return this.SKILL_OFF_EFFECT;
     }
 
     @Override
     public int getConsumeMP() {
-        return COSUME_MP;
+        return this.COSUME_MP;
     }
 }
