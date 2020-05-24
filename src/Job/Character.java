@@ -1,15 +1,20 @@
 package Job;
 
+import Skill.Skill;
+
 public class Character {
     private String NAME, WEAPON_NAME, ARMOR_NAME;
-    private int HP, MP, OFF, DEF, WEAPON_OFF, ARMOR_DEF;
+    private int HP, MP, OFF, DEF, SKILL_INDEX, WEAPON_OFF, ARMOR_DEF;
+    private String SKILL_LIST[] = new String[4];
+    private Skill SKILL[] = new Skill[4];
 
     public Character(String name) {
         this.NAME = name;
         this.HP = 100;
-        this.MP = 60; // <--
+        this.MP = 60;
         this.OFF = 8;
         this.DEF = 5;
+        this.SKILL_INDEX = 0;
         this.WEAPON_OFF = 0;
         this.ARMOR_DEF = 0;
     }
@@ -30,12 +35,40 @@ public class Character {
         return this.HP;
     }
 
+    public int getCharMP() {
+        return this.MP;
+    }
+
     public int getCharOFF() {
         return this.OFF;
     }
 
     public int getCharDEF() {
         return this.DEF;
+    }
+
+    public void setSkill(String name, Skill skill) {
+        SKILL_LIST[this.SKILL_INDEX] = name;
+        this.SKILL[SKILL_INDEX] = skill;
+        this.SKILL_INDEX++;
+    }
+
+    public Skill[] getSkill() {
+        return this.SKILL;
+    }
+
+    public void getSkillList() {
+        System.out.printf("%s의 스킬목록\n", this.NAME);
+        int index = 0;
+        while (index <= SKILL_LIST.length) {
+            if (SKILL_LIST[index] == null)
+                break;
+            else {
+                System.out.printf("%d. %s ", index + 1, SKILL_LIST[index]);
+                index++;
+            }
+        }
+        System.out.println();
     }
 
     public void setWeapon() {
@@ -78,9 +111,10 @@ public class Character {
         else
             System.out.printf("%s(을)를 착용중입니다.\n\n", this.ARMOR_NAME);
     }
-    // <--
+
     public int attack() {
-        return (int)(Math.random() * Math.round(this.OFF * 1.1)) + (int)Math.round(this.OFF * 0.8);
+        int maxAttack = (int) Math.round(this.OFF * 1.1);
+        int minAttack = (int) Math.round(this.OFF * 0.8);
+        return (int) (Math.random() * maxAttack) + minAttack;
     }
-    // <--
 }
