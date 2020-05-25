@@ -11,11 +11,11 @@ public class Pig extends Monster {
 
     @Override
     public int getMonHP() {
-        return this.HP;
+        return HP;
     }
 
     @Override
     public int getMonOFF() {
-        return this.MONSTER_OFF;
+        return MONSTER_OFF;
     }
 }

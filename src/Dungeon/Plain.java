@@ -51,6 +51,10 @@ public class Plain extends Dungeon {
                     break;
 
                 case 3: //스킬
+                    if(CH_SKILL[0] == null) {
+                        System.out.println("사용할 수 있는 스킬이 존재하지 않습니다.\n");
+                        continue battleloop;
+                    }
                     System.out.println("사용할 스킬을 선택해주세요.");
                     character.getSkillList();
                     int SKILL_SELECT = scanner.nextInt();
@@ -59,6 +63,10 @@ public class Plain extends Dungeon {
                         case 2:
                         case 3:
                         case 4:
+                            if(CH_SKILL[SKILL_SELECT - 1] == null) {
+                                System.out.println("유효 하지 않은 숫자입니다.\n");
+                                continue battleloop;
+                            }
                             if (CH_MP < CH_SKILL[SKILL_SELECT - 1].getConsumeMP()) {
                                 System.out.println("MP가 부족합니다!");
                                 continue battleloop;
@@ -96,7 +104,7 @@ public class Plain extends Dungeon {
             Thread.sleep(1000);
 
             int MON_DAMEGE = monster.getMonOFF();
-            MON_DAMEGE = (int) ((Math.random() * MON_DAMEGE * 1.1) + MON_DAMEGE * 0.8);
+            MON_DAMEGE = (int) ((Math.random() * MON_DAMEGE * 0.3) + MON_DAMEGE * 0.8);
 
             if (SELECT == 2) {
                 System.out.println("방어 태세를 갖춥니다.\n");

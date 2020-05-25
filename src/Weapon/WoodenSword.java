@@ -12,11 +12,11 @@ public class WoodenSword extends Weapon {
 
     @Override
     public String getWeaponName() {
-        return this.WEAPON_NAME;
+        return WEAPON_NAME;
     }
 
     @Override
     public int getWeaponOFF() {
-        return this.WEAPON_OFF;
+        return WEAPON_OFF;
     }
 }

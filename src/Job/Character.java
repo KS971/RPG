@@ -13,14 +13,14 @@ public class Character {
     private Skill SKILL[] = new Skill[4];
 
     public Character(String name) {
-        this.NAME = name;
-        this.HP = 100;
-        this.MP = 60;
-        this.OFF = 8;
-        this.DEF = 5;
-        this.SKILL_INDEX = 0;
-        this.WEAPON_OFF = 0;
-        this.ARMOR_DEF = 0;
+        NAME = name;
+        HP = 100;
+        MP = 60;
+        OFF = 8;
+        DEF = 5;
+        SKILL_INDEX = 0;
+        WEAPON_OFF = 0;
+        ARMOR_DEF = 0;
     }
 
     public void getState() {
@@ -32,23 +32,23 @@ public class Character {
     }
 
     public String getCharName() {
-        return this.NAME;
+        return NAME;
     }
 
     public int getCharHP() {
-        return this.HP;
+        return HP;
     }
 
     public int getCharMP() {
-        return this.MP;
+        return MP;
     }
 
     public int getCharOFF() {
-        return this.OFF;
+        return OFF;
     }
 
     public int getCharDEF() {
-        return this.DEF;
+        return DEF;
     }
 
     public void setSkill(Skill skill) {
@@ -61,6 +61,7 @@ public class Character {
             SKILL[SKILL_INDEX] = skill;
             SKILL_LIST[SKILL_INDEX] = skill.getSkillName();
             SKILL_INDEX++;
+            System.out.printf("%s(을)를 습득했습니다.\n\n", skill.getSkillName());
         } else {
             System.out.println("스킬 습득을 취소했습니다.\n");
         }
@@ -71,7 +72,6 @@ public class Character {
     }
 
     public void getSkillList() {
-        System.out.printf("%s의 스킬목록\n", NAME);
         int index = 0;
         while (index <= SKILL_LIST.length) {
             if (SKILL_LIST[index] == null)
@@ -126,7 +126,7 @@ public class Character {
     }
 
     public int attack() {
-        int maxAttack = (int) Math.round(OFF * 1.1);
+        int maxAttack = (int) Math.round(OFF * 0.3);
         int minAttack = (int) Math.round(OFF * 0.8);
         return (int) (Math.random() * maxAttack) + minAttack;
     }

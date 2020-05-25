@@ -12,11 +12,11 @@ public class HumbleRobe extends Armor {
 
     @Override
     public String getArmorName() {
-        return this.ARMOR_NAME;
+        return ARMOR_NAME;
     }
 
     @Override
     public int getArmorDEF() {
-        return this.ARMOR_DEF;
+        return ARMOR_DEF;
     }
 }
