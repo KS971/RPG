@@ -1,7 +1,8 @@
 import Job.Warrior;
+import Skill.Brandish;
 import Weapon.WoodenSword;
 import Armor.HumbleRobe;
-import Skill.Brandish;
+import ConsumptionItem.HareMeat;
 
 import static Dungeon.Plain.plain;
 
@@ -10,14 +11,24 @@ public class Main {
         Warrior Kang = new Warrior("강산");
         Kang.getState();
 
+        WoodenSword woodenSword = new WoodenSword();
+        HumbleRobe humbleRobe = new HumbleRobe();
         Brandish brandish = new Brandish();
-        Kang.setSkill(brandish);
+        HareMeat hareMeat = new HareMeat();
 
-        plain(Kang);
+        hareMeat.getItemInfo();
+        Kang.consumeItem(hareMeat);
+        Kang.consumeItem(hareMeat);
+
+        Kang.getState();
+
+//        plain(Kang);
 
     }
 }
-// 몬스터 데미지 조정(구현 완료)
-// 유효 하지 않은 스킬 번호 선택시 오류 발생(구현 완료)
-// 스킬이 존재 하지 않는 경우(구현 완료)
-// 스킬 중복 확인(구현중)
+//인벤토리
+//스킬 중복 확인(구현중)
+//전리품(구현중)
+//사냥터 입장후 HP를 유지하도록 변경(구현 완료)
+//setCharHP, setCharMP, consumeItem 메소드 추가
+//소비 아이템 클래스 추가, 토끼 고기 아이템 추가

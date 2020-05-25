@@ -1,21 +1,24 @@
 package Job;
 
-import Armor.Armor;
 import Skill.Skill;
 import Weapon.Weapon;
+import Armor.Armor;
+import ConsumptionItem.ConsumptionItem;
 
 import java.util.Scanner;
 
 public class Character {
     private String NAME, WEAPON_NAME, ARMOR_NAME;
-    private int HP, MP, OFF, DEF, SKILL_INDEX, WEAPON_OFF, ARMOR_DEF;
+    private int HP, MP, MAX_HP, MAX_MP, OFF, DEF, SKILL_INDEX, WEAPON_OFF, ARMOR_DEF;
     private String SKILL_LIST[] = new String[4];
     private Skill SKILL[] = new Skill[4];
 
     public Character(String name) {
-        NAME = name;
+        this.NAME = name;
         HP = 100;
         MP = 60;
+        MAX_HP = HP;
+        MAX_MP = MP;
         OFF = 8;
         DEF = 5;
         SKILL_INDEX = 0;
@@ -35,8 +38,16 @@ public class Character {
         return NAME;
     }
 
+    public void setCharHP(int HP) {
+        this.HP = HP;
+    }
+
     public int getCharHP() {
         return HP;
+    }
+
+    public void setCharMP(int MP) {
+        this.MP = MP;
     }
 
     public int getCharMP() {
@@ -51,21 +62,48 @@ public class Character {
         return DEF;
     }
 
+    public void consumeItem(ConsumptionItem item) {
+        if (item.getItemSort().equals("HP")) {
+            HP += item.getItemEffect();
+            if (HP > MAX_HP)
+                HP = MAX_HP;
+            System.out.printf("%s(을)를 사용했습니다.\n%d의 HP를 회복했습니다.\n\n",
+                    item.getItemName(), item.getItemEffect());
+        } else if (item.getItemSort().equals("MP")) {
+            MP += item.getItemEffect();
+            if (MP > MAX_MP)
+                MP = MAX_MP;
+            System.out.printf("%s(을)를 사용했습니다.\n%d의 MP를 회복했습니다.\n\n",
+                    item.getItemEffect(), item.getItemEffect());
+        }
+    }
+    // <--
     public void setSkill(Skill skill) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("한번 배운 스킬은 되돌릴 수 없습니다.");
         System.out.printf("%s 스킬을 배우시겠습니까?\n", skill.getSkillName());
         System.out.println("1. 배운다 2. 배우지 않는다.");
-
-        if (scanner.nextInt() == 1) {
-            SKILL[SKILL_INDEX] = skill;
-            SKILL_LIST[SKILL_INDEX] = skill.getSkillName();
-            SKILL_INDEX++;
-            System.out.printf("%s(을)를 습득했습니다.\n\n", skill.getSkillName());
-        } else {
+        int SELECT = scanner.nextInt();
+        if (SELECT == 1) {
+            int index = 0;
+            while (index <= SKILL_INDEX) {
+                if (SKILL_LIST[index++].equals(skill.getSkillName())) {
+                    System.out.printf("%s(은)는 이미 습득한 스킬입니다.\n\n", skill.getSkillName());
+                    break;
+                }
+                SKILL[SKILL_INDEX] = skill;
+                SKILL_LIST[SKILL_INDEX] = skill.getSkillName();
+                SKILL_INDEX++;
+                System.out.printf("%s(을)를 습득했습니다.\n\n", skill.getSkillName());
+                break;
+            }
+        } else if (SELECT == 2) {
             System.out.println("스킬 습득을 취소했습니다.\n");
+        } else {
+            System.out.println("유효 하지 않은 숫자입니다.\n");
         }
     }
+    // <--
 
     public Skill[] getSkill() {
         return this.SKILL;
@@ -99,9 +137,9 @@ public class Character {
 
     public void getWeapon() {
         if (WEAPON_OFF == 0) {
-            System.out.println("어떠한 무기도 착용하지 않았습니다.\n");
+            System.out.println("어떠한 무기도 착용 하지 않았습니다.\n");
         } else {
-            System.out.printf("%s(을)를 착용중입니다.\n\n", WEAPON_NAME);
+            System.out.printf("%s(을)를 착용 중 입니다.\n\n", WEAPON_NAME);
         }
     }
 
@@ -120,9 +158,9 @@ public class Character {
 
     public void getArmor() {
         if (ARMOR_DEF == 0)
-            System.out.println("어떠한 방어구도 착용하지 않았습니다.\n");
+            System.out.println("어떠한 방어구도 착용 하지 않았습니다.\n");
         else
-            System.out.printf("%s(을)를 착용중입니다.\n\n", ARMOR_NAME);
+            System.out.printf("%s(을)를 착용 중 입니다.\n\n", ARMOR_NAME);
     }
 
     public int attack() {

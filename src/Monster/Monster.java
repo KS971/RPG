@@ -6,4 +6,5 @@ public abstract class Monster {
     public abstract int getMonHP();
 
     public abstract int getMonOFF();
+    
 }

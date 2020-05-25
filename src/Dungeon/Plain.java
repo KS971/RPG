@@ -51,7 +51,7 @@ public class Plain extends Dungeon {
                     break;
 
                 case 3: //스킬
-                    if(CH_SKILL[0] == null) {
+                    if (CH_SKILL[0] == null) {
                         System.out.println("사용할 수 있는 스킬이 존재하지 않습니다.\n");
                         continue battleloop;
                     }
@@ -63,7 +63,7 @@ public class Plain extends Dungeon {
                         case 2:
                         case 3:
                         case 4:
-                            if(CH_SKILL[SKILL_SELECT - 1] == null) {
+                            if (CH_SKILL[SKILL_SELECT - 1] == null) {
                                 System.out.println("유효 하지 않은 숫자입니다.\n");
                                 continue battleloop;
                             }
@@ -128,8 +128,11 @@ public class Plain extends Dungeon {
 
         } while (MON_HP > 0 || CH_HP > 0);
 
-        if (MON_HP <= 0)
+        if (MON_HP <= 0) {
             System.out.printf("%s을(를) 헤치웠습니다!\n", MON_NAME);
+            character.setCharHP(CH_HP);
+            character.setCharMP(CH_MP);
+        }
 
         if (CH_HP <= 0)
             System.out.printf("%s에 의해 사망했습니다.\n", MON_NAME);
