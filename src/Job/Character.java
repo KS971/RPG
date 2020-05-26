@@ -5,6 +5,8 @@ import Weapon.Weapon;
 import Armor.Armor;
 import ConsumptionItem.ConsumptionItem;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Character {
@@ -12,6 +14,7 @@ public class Character {
     private int HP, MP, MAX_HP, MAX_MP, OFF, DEF, SKILL_INDEX, WEAPON_OFF, ARMOR_DEF;
     private String SKILL_LIST[] = new String[4];
     private Skill SKILL[] = new Skill[4];
+    private List<String> INVENTORY = new ArrayList<>();
 
     public Character(String name) {
         this.NAME = name;
@@ -62,6 +65,26 @@ public class Character {
         return DEF;
     }
 
+    public void setInventory(Weapon weapon) {
+        INVENTORY.add(weapon.getWeaponName());
+    }
+
+    public void setInventory(Armor armor) {
+        INVENTORY.add(armor.getArmorName());
+    }
+
+    public void setInventory(ConsumptionItem item) {
+        INVENTORY.add(item.getItemName());
+    }
+
+    public void getInventory() {
+        System.out.printf("%s의 인벤토리\n", NAME);
+        for(String i : INVENTORY) {
+            System.out.println(i);
+        }
+        System.out.println();
+    }
+
     public void consumeItem(ConsumptionItem item) {
         if (item.getItemSort().equals("HP")) {
             HP += item.getItemEffect();
@@ -106,7 +129,7 @@ public class Character {
     // <--
 
     public Skill[] getSkill() {
-        return this.SKILL;
+        return SKILL;
     }
 
     public void getSkillList() {

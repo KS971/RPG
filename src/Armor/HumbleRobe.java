@@ -1,7 +1,7 @@
 package Armor;
 
 public class HumbleRobe extends Armor {
-    private String ARMOR_NAME = "Humble Robe";
+    private String ARMOR_NAME = "허름한 로브";
     private int ARMOR_DEF = 5;
 
     @Override
