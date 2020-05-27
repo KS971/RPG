@@ -26,6 +26,6 @@ public class Rabbit extends Monster {
 
     @Override
     public ConsumptionItem getSpoilItem() {
-        return SPOIL_ITEM[(int)Math.random() * SPOIL_ITEM.length];
+        return SPOIL_ITEM[(int) Math.random() * SPOIL_ITEM.length];
     }
 }

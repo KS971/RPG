@@ -3,6 +3,7 @@ import Weapon.WoodenSword;
 import Armor.HumbleRobe;
 import Skill.Brandish;
 import ConsumptionItem.HareMeat;
+import ConsumptionItem.PigMeat;
 
 import static Dungeon.Plain.plain;
 
@@ -14,22 +15,27 @@ public class Main {
 
         WoodenSword woodenSword = new WoodenSword();
         HumbleRobe humbleRobe = new HumbleRobe();
-        HareMeat hareMeat = new HareMeat();
         Brandish brandish = new Brandish();
+        HareMeat hareMeat = new HareMeat();
+        PigMeat pigmeat = new PigMeat();
 
         Kang.setInventory(woodenSword);
         Kang.setInventory(humbleRobe);
-        Kang.setInventory(hareMeat);
-        Kang.setSkill(brandish);
+//        Kang.setSkill(brandish);
 
         plain(Kang);
 
         Kang.getInventory();
+        Kang.getState();
+
+        Kang.consumeItem(pigmeat);
+        Kang.getState();
 
     }
 }
 //스킬 중복 확인(구현중)
-//전리품(구현 완료)
-//Add spoil system
-//Add PigMeat class to ConsumptionItem package
-//Add getSpoilItem method to each monsters' class
+//부활 기능(구현중)
+//아이템 유무 확인 후 소비하도록 수정(구현중)
+//캐릭터 사망후 HP 회복이 안되는 에러 발생(수정중)
+//Add to show maximum HP during battle
+//Update all delays in Plain class(1000 -> 500)

@@ -7,15 +7,18 @@ import Skill.Skill;
 import Monster.*;
 
 public class Plain extends Dungeon {
-    public static void plain(Character character) throws Exception {
+    public static void plain(Character character) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         String MON_LIST[] = {"Rabbit", "Pig"};
         Monster monster = SpawnMonster.spawn(MON_LIST[(int) (Math.random() * 2)]);
         String MON_NAME = monster.getMonName();
         String CH_NAME = character.getCharName();
         int CH_HP = character.getCharHP();
+        int CH_MAX_HP = character.getCharHP();
         int CH_MP = character.getCharMP();
+        int CH_MAX_MP = character.getCharMP();
         int MON_HP = monster.getMonHP();
+        int MON_MAX_HP = monster.getMonHP();
         Skill CH_SKILL[] = character.getSkill();
 
         System.out.println("평야에 도착했습니다.\n(두리번 두리번..)\n");
@@ -36,10 +39,10 @@ public class Plain extends Dungeon {
 
                     if (CH_DAMAGE > character.getCharOFF()) {
                         System.out.printf("크리티컬 히트! %d의 데미지를 주었습니다.\n", CH_DAMAGE);
-                        System.out.printf("%s의 잔여 HP: %d\n\n", MON_NAME, MON_HP);
+                        System.out.printf("%s의 잔여 HP: %d/%d\n\n", MON_NAME, MON_HP, MON_MAX_HP);
                     } else {
                         System.out.printf("%d의 데미지를 주었습니다.\n", CH_DAMAGE);
-                        System.out.printf("%s의 잔여 HP: %d\n\n", MON_NAME, MON_HP);
+                        System.out.printf("%s의 잔여 HP: %d/%d\n\n", MON_NAME, MON_HP, MON_MAX_HP);
                     }
 
                     if (MON_HP <= 0) // <--
@@ -76,15 +79,15 @@ public class Plain extends Dungeon {
                             CH_MP -= CH_SKILL[SKILL_SELECT - 1].getConsumeMP();
 
                             System.out.printf("%s(을)를 시전합니다.\n", CH_SKILL[SKILL_SELECT - 1].getSkillName());
-                            System.out.printf("%s의 잔여 MP: %d\n\n", CH_NAME, CH_MP);
+                            System.out.printf("%s의 잔여 MP: %d/%d\n\n", CH_NAME, CH_MP, CH_MAX_MP);
 
                             if (CH_MP <= 0) // <--
                                 CH_MP = 0;
 
-                            Thread.sleep(1000);
+                            Thread.sleep(500);
 
                             System.out.printf("%d의 데미지를 주었습니다.\n", CH_SKILL_DAMAGE);
-                            System.out.printf("%s의 잔여 HP: %d\n\n", MON_NAME, MON_HP);
+                            System.out.printf("%s의 잔여 HP: %d/%d\n\n", MON_NAME, MON_HP, MON_MAX_HP);
 
                             if (MON_HP <= 0)
                                 break battleloop;
@@ -99,9 +102,9 @@ public class Plain extends Dungeon {
                     System.out.println("유효 하지 않은 숫자입니다.\n");
                     continue battleloop;
             }
-            Thread.sleep(1000);
+            Thread.sleep(500);
             System.out.printf("%s가 공격해옵니다!\n\n", MON_NAME);
-            Thread.sleep(1000);
+            Thread.sleep(500);
 
             int MON_DAMEGE = monster.getMonOFF();
             MON_DAMEGE = (int) ((Math.random() * MON_DAMEGE * 0.3) + MON_DAMEGE * 0.8);
@@ -113,7 +116,7 @@ public class Plain extends Dungeon {
                 if (MON_DAMEGE <= 0)
                     MON_DAMEGE = 0;
 
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
             CH_HP -= MON_DAMEGE;
 
@@ -121,10 +124,12 @@ public class Plain extends Dungeon {
                 CH_HP = 0;
 
             System.out.printf("%d의 데미지를 입었습니다.\n", MON_DAMEGE);
-            System.out.printf("%s의 잔여 HP: %d\n\n", CH_NAME, CH_HP);
+            System.out.printf("%s의 잔여 HP: %d/%d\n\n", CH_NAME, CH_HP, CH_MAX_HP);
 
-            if (CH_HP <= 0) // <--
+            if (CH_HP <= 0) { // <--
+                character.setCharHP(0);
                 break;
+            }
 
         } while (MON_HP > 0 || CH_HP > 0);
 
@@ -135,8 +140,9 @@ public class Plain extends Dungeon {
             character.setInventory(monster.getSpoilItem());
         }
 
-        if (CH_HP <= 0)
-            System.out.printf("%s에 의해 사망했습니다.\n\n", MON_NAME);
-
+        if (CH_HP <= 0) {
+            System.out.printf("%s에 의해 사망했습니다.\n", MON_NAME);
+            System.out.println("마을로 돌아왔습니다.\n");
+        }
     }
 }

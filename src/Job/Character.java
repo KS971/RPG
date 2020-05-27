@@ -1,8 +1,8 @@
 package Job;
 
-import Skill.Skill;
 import Weapon.Weapon;
 import Armor.Armor;
+import Skill.Skill;
 import ConsumptionItem.ConsumptionItem;
 
 import java.util.List;
@@ -79,7 +79,7 @@ public class Character {
 
     public void getInventory() {
         System.out.printf("%s의 인벤토리\n", NAME);
-        for(String i : INVENTORY) {
+        for (String i : INVENTORY) {
             System.out.println(i);
         }
         System.out.println();
@@ -100,6 +100,7 @@ public class Character {
                     item.getItemEffect(), item.getItemEffect());
         }
     }
+
     // <--
     public void setSkill(Skill skill) {
         Scanner scanner = new Scanner(System.in);

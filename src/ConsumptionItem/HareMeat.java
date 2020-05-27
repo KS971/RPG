@@ -4,7 +4,7 @@ public class HareMeat extends ConsumptionItem {
     private String ITEM_NAME = "토끼 고기";
     private String ITEM_SORT = "HP";
     private int ITEM_EFFECT = 10;
-    
+
     @Override
     public void getItemInfo() {
         System.out.println("토끼 고기이다.");
