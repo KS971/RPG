@@ -1,10 +1,11 @@
 package Dungeon;
 
-import java.util.Scanner;
-
+import ConsumptionItem.ConsumptionItem;
 import Job.Character;
 import Skill.Skill;
 import Monster.*;
+
+import java.util.Scanner;
 
 public class Plain extends Dungeon {
     public static void plain(Character character) throws InterruptedException {
@@ -134,10 +135,12 @@ public class Plain extends Dungeon {
         } while (MON_HP > 0 || CH_HP > 0);
 
         if (MON_HP <= 0) {
-            System.out.printf("%s을(를) 헤치웠습니다!\n\n", MON_NAME);
+            System.out.printf("%s을(를) 헤치웠습니다!\n", MON_NAME);
             character.setCharHP(CH_HP);
             character.setCharMP(CH_MP);
-            character.setInventory(monster.getSpoilItem());
+            ConsumptionItem DROP_ITEM = monster.getSpoilItem();
+            character.setInventory(DROP_ITEM);
+            System.out.printf("%s(을)를 획득했습니다.\n\n", DROP_ITEM.getItemName());
         }
 
         if (CH_HP <= 0) {

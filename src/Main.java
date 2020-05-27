@@ -21,6 +21,7 @@ public class Main {
 
         Kang.setInventory(woodenSword);
         Kang.setInventory(humbleRobe);
+        Kang.setWeapon(woodenSword);
 //        Kang.setSkill(brandish);
 
         plain(Kang);
@@ -37,5 +38,4 @@ public class Main {
 //부활 기능(구현중)
 //아이템 유무 확인 후 소비하도록 수정(구현중)
 //캐릭터 사망후 HP 회복이 안되는 에러 발생(수정중)
-//Add to show maximum HP during battle
-//Update all delays in Plain class(1000 -> 500)
+//드랍된 아이템의 이름이 출력되도록 수정(구현 완료)
