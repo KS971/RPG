@@ -129,13 +129,14 @@ public class Plain extends Dungeon {
         } while (MON_HP > 0 || CH_HP > 0);
 
         if (MON_HP <= 0) {
-            System.out.printf("%s을(를) 헤치웠습니다!\n", MON_NAME);
+            System.out.printf("%s을(를) 헤치웠습니다!\n\n", MON_NAME);
             character.setCharHP(CH_HP);
             character.setCharMP(CH_MP);
+            character.setInventory(monster.getSpoilItem());
         }
 
         if (CH_HP <= 0)
-            System.out.printf("%s에 의해 사망했습니다.\n", MON_NAME);
+            System.out.printf("%s에 의해 사망했습니다.\n\n", MON_NAME);
 
     }
 }

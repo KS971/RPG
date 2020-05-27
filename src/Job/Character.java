@@ -110,10 +110,10 @@ public class Character {
         if (SELECT == 1) {
             int index = 0;
             while (index <= SKILL_INDEX) {
-                if (SKILL_LIST[index++].equals(skill.getSkillName())) {
-                    System.out.printf("%s(은)는 이미 습득한 스킬입니다.\n\n", skill.getSkillName());
-                    break;
-                }
+//                if (SKILL_LIST[index++].equals(skill.getSkillName())) {
+//                    System.out.printf("%s(은)는 이미 습득한 스킬입니다.\n\n", skill.getSkillName());
+//                    break;
+//                }
                 SKILL[SKILL_INDEX] = skill;
                 SKILL_LIST[SKILL_INDEX] = skill.getSkillName();
                 SKILL_INDEX++;

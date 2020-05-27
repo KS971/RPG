@@ -1,7 +1,7 @@
 import Job.Warrior;
-import Skill.Brandish;
 import Weapon.WoodenSword;
 import Armor.HumbleRobe;
+import Skill.Brandish;
 import ConsumptionItem.HareMeat;
 
 import static Dungeon.Plain.plain;
@@ -15,19 +15,21 @@ public class Main {
         WoodenSword woodenSword = new WoodenSword();
         HumbleRobe humbleRobe = new HumbleRobe();
         HareMeat hareMeat = new HareMeat();
+        Brandish brandish = new Brandish();
 
-        Kang.setInventory(hareMeat);
-        Kang.setInventory(hareMeat);
         Kang.setInventory(woodenSword);
         Kang.setInventory(humbleRobe);
-        Kang.getInventory();
+        Kang.setInventory(hareMeat);
+        Kang.setSkill(brandish);
 
         plain(Kang);
+
+        Kang.getInventory();
 
     }
 }
 //스킬 중복 확인(구현중)
-//전리품(구현중)
-//인벤토리(구현 완료)
-//setInventory 메소드 추가
-//monster와 item 이름 한글화
+//전리품(구현 완료)
+//Add spoil system
+//Add PigMeat class to ConsumptionItem package
+//Add getSpoilItem method to each monsters' class
